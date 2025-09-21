@@ -16,15 +16,14 @@
 
 ## Introducción
 
-Este Dockerfile fue diseñado para crear una imagen basada en PHP 7.4 con Apache, pensada no solo para correr aplicaciones, sino también para servir como un entorno de desarrollo completo. La construcción está organizada en varias fases, lo que ayuda a mantener la imagen más limpia y ordenada.
-
-Primero, se configura un servidor Apache que queda listo para ejecutar aplicaciones en PHP. Luego, se añaden herramientas básicas como Git, necesarias para el trabajo diario de un desarrollador. También se crea un usuario específico llamado vscode, con permisos para interactuar con Docker, lo que permite trabajar de manera más segura y práctica sin necesidad de usar la cuenta root. Finalmente, se incorporan utilidades de Docker (CLI, Buildx y Compose) para que el propio contenedor pueda compilar y manejar otros servicios sin depender tanto del sistema host.
+La configuración presentada, compuesta por un Dockerfile y un docker-compose.yml, define un entorno estandarizado para aplicaciones en PHP 7.4 con Apache. El Dockerfile utiliza una estrategia multi-stage para optimizar la imagen, incorporando herramientas como Git, un usuario no-root (vscode) y utilitarios de Docker (CLI, Buildx, Compose). Por su parte, docker-compose permite orquestar servicios, gestionar volúmenes y redes, facilitando la portabilidad y la reproducibilidad del entorno en diferentes fases de desarrollo y despliegue.
 
 <br/>
 
 ## Construido con
 
 - Docker
+- Docker Compose
 - Apache
 - PHP [7.4](https://hub.docker.com/_/php)
 
@@ -45,8 +44,8 @@ $ tree -a
 
 | Archivo | Descripción |
 | ---- | ---- |
-| [Dockerfile](app/Dockerfile) | `Pendiente` |
-| [index.php](app/index.php) | `Pendiente` |
+| [Dockerfile](app/Dockerfile) | Archivo que contiene las instrucciones para crear una imagen en Docker. |
+| [index.php](app/index.php) | Página de inicio personalizada. |
 | [docker-compose.yml](docker-compose.yml) | Archivo que define la orquestación. |
 
 <br/>
@@ -118,15 +117,13 @@ $ tree -a
 
 ## Conclusiones
 
-- Separar la construcción en etapas hace que la imagen sea más fácil de mantener y más ligera, lo cual mejora la portabilidad entre distintos entornos.
+- El multi-stage build reduce el tamaño de la imagen y mejora la seguridad al incluir solo dependencias necesarias.
 
-- Incluir solo lo necesario (como Git) ayuda a mantener el contenedor seguro y evita sobrecargarlo con paquetes que no se van a usar.
+- La creación de un usuario no-root fortalece las prácticas de seguridad y desarrollo.
 
-- El uso de un usuario no-root como vscode es una buena práctica que aporta seguridad y al mismo tiempo facilita el trabajo del desarrollador.
+- El docker-compose simplifica la gestión de entornos multi-servicio, haciendo más ágil la orquestación y despliegue.
 
-- Al tener instaladas las herramientas de Docker dentro del contenedor, se gana independencia y flexibilidad para realizar tareas de construcción y despliegue.
-
-- Finalmente, dejar a Apache como proceso principal asegura que el servidor esté siempre activo y cumpla su función como parte central de la aplicación.
+- En conjunto, ambos archivos proporcionan un entorno portable, reproducible y escalable, alineado con buenas prácticas de DevOps.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [appsrv-shield]: https://img.shields.io/badge/APP%20SRV-APACHE-blue?style=for-the-badge&logo=apache&logoColor=red

@@ -88,7 +88,7 @@ $ tree -a
 
    <img width="2048" height="1152" alt="image" src="https://github.com/user-attachments/assets/fe62f759-f798-402f-817b-8a3372fc4b03" />
 
-   Como se puiede observar no se despliega la página de inicio debido a que se está presentado un error.
+   Como se puede observar no se despliega la página de inicio debido a que se está presentado un error.
 
 6. Se comprueban los persmisos de la carpeta `app`
 
